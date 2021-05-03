@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    <h1 class="mt-4">Projects</h1>
+    <hr />
+    <% @projects.each do |project| %>
+        <div class="d-inline">
+            <div class="d-inline-flex card card-body">
+                <a href="/projects/<%= project["id"] %>">
+                    <%= project["projectName"] %>
+                </a>
+            </div>
+        </div>
+    <% end %>
+    </ul>
+</div>

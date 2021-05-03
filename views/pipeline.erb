@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <h2 class="mt-4">Pipeline</h2>
+    <hr />
+    <% @builds["workflows"]["docs"].each do |build| %>
+        <%
+            status = case build["status"]
+            when "success"
+                "success"
+            when "error"
+                "danger"
+            when "terminated"
+                "info" 
+            end
+        %>
+        <table class="table">
+            <tr class="alert alert-<%= status %>">
+                <td><%= build["status"] %></td>
+                <td><%= build["commitMessage"] %></td>
+                <td><%= build["id"] %></td>
+                <td><%= build["started"] %></td>
+                <td class="text-right"><%= build["branchName"] %></td>
+            </tr>
+        </table>
+    <% end %>
+</div>

@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    <h1 class="mt-4">Pipelines</h1>
+    <hr />
+    <% @pipelines.each do |pipeline| %>
+        <div class="d-inline">
+            <div class="d-inline-flex card card-body mr-3 mb-3">
+                <a href="/pipelines/<%= pipeline["metadata"]["id"] %>">
+                    <%= pipeline["metadata"]["name"] %>
+                </a>
+            </div>
+        </div>
+    <% end %>
+    </ul>
+</div>
