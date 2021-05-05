@@ -46,4 +46,13 @@ class Cf
 
     return [JSON.parse(res.body), JSON.parse(builds.body)]
   end
+
+  def builds(limit = 20)
+    res = Typhoeus::Request.get(
+      "#{@url}/workflow/?inlineView[filters][0][selectedValue]=type&inlineView[filters][0][findType]=is&inlineView[filters][0][values][0]=webhook&inlineView[filters][0][values][1]=build&inlineView[type]=build&page=1&limit=#{limit}",
+      headers: {"Authorization": @apikey}
+    )
+
+    return JSON.parse(res.body)
+  end
 end
