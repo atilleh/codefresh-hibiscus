@@ -14,15 +14,27 @@
                 "warning"
             end
         %>
+       
         <table class="table table-bordered" style="table-layout: fixed">
             <tr class="alert alert-<%= status %>">
-                <td><%= build["status"] %></td>
+                <td><a href="https://g.codefresh.io/build/<%= build["id"] %>" %><%= build["status"] %></a></td>
                 <td>Created: <%= build["created"] %></td>
                 <td><%= build["eventName"] %></td>
-                <td><%= build["pipelineName"] %></td>
-                <td><%= build["repoName"]%> (<%= build["branchName"] %>)</td>
-                <td><code><%= build["commitMessage"] %></code></td>
-                <td class="text-right"><%= build["committer"] %></td>
+                <td>
+                    <%= build["pipelineName"] %></td>
+                <td>
+                    <a href="<%= build["branchURL"] %>">
+                        <%= build["repoName"]%> (<%= build["branchName"] %>)
+                    </a>
+                </td>
+                <td style="width: 20%; overflow: scroll;">
+                    <a href="<%= build["commitURL"] %>">
+                        <code><%= build["commitMessage"] %></code>
+                    </a>
+                </td>
+                <td class="text-right">
+                    <img style="border-radius: 100%; width: 40px; height: 40px;" src="<%= build["committerAvatar"] %>">
+                <%= build["committer"] %></td>
             </tr>
         </table>
     <% end %>
