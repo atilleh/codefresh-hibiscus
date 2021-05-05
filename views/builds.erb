@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <h2 class="mt-4">Builds</h2>
+
+    <% @builds["workflows"]["docs"].each do |build| %>
+        <%
+            status = case build["status"]
+            when "success"
+                "success"
+            when "error"
+                "danger"
+            when "terminated"
+                "info" 
+            when "running"
+                "warning"
+            end
+        %>
+        <table class="table table-bordered" style="table-layout: fixed">
+            <tr class="alert alert-<%= status %>">
+                <td><%= build["status"] %></td>
+                <td>Created: <%= build["created"] %></td>
+                <td><%= build["eventName"] %></td>
+                <td><%= build["pipelineName"] %></td>
+                <td><%= build["repoName"]%> (<%= build["branchName"] %>)</td>
+                <td><code><%= build["commitMessage"] %></code></td>
+                <td class="text-right"><%= build["committer"] %></td>
+            </tr>
+        </table>
+    <% end %>
+</div>
+
+<meta http-equiv="refresh" content="20">

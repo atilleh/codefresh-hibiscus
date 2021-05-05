@@ -27,6 +27,13 @@ get '/pipelines/:id' do
     erb :pipeline, layout: :template
 end
 
+get '/builds' do
+    @cf = Cf.new(settings.apikey)
+    @builds = @cf.builds(limit = 20)
+
+    erb :builds, layout: :template
+end
+
 get '/status' do
     content_type :"application/json"
     { code: 200 }.to_json
